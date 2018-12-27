@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Odliczanie do sylwestra</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Anonymous+Pro:700"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-image: url("new.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: "Anonymous Pro", monospace;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 20vh;
+        color: rgb(148, 0, 20);
+        color: white;
+      }
+
+      #wrapper {
+        width: 100%;
+        margin-top: 8vh;
+        text-align: center;
+      }
+
+      span {
+        display: inline-block;
+        text-align: center;
+        line-height: 10vh;
+        padding-left: 5vh;
+        padding-right: 5vh;
+        width: 8%;
+        height: 10vh;
+        background-color: #fff;
+        border-radius: 20%;
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.39);
+        background-color: rgb(216, 0, 36);
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Do Nowego Roku pozostało:</h1>
+    <div id="wrapper">
+      <span id="day">1</span> <span id="hours">2</span>
+      <span id="mins">3</span> <span id="seconds">4</span>
+    </div>
+    <script>
+      setInterval(() => {
+        let actualTime = new Date().getTime();
+        let timeEnd = new Date("2018-12-31 23:59:59").getTime();
+        const day = Math.floor(
+          timeEnd / (1000 * 60 * 60 * 24) - actualTime / (1000 * 60 * 60 * 24)
+        );
+        const hours = Math.floor(
+          (timeEnd / (1000 * 60 * 60) - actualTime / (1000 * 60 * 60)) % 24
+        );
+        const mins = Math.floor(
+          (timeEnd / (1000 * 60) - actualTime / (1000 * 60)) % 60
+        );
+        const sec = Math.floor((timeEnd / 1000 - actualTime / 1000) % 60);
+
+        const spanDay = (document.getElementById("day").innerHTML =
+          day + " dni");
+        if (day == 1) {
+          document.getElementById("day").innerHTML = day + " dzien";
+        }
+        if (day == 0) {
+          document.getElementById("day").innerHTML = day + " dni";
+        }
+        const spanHours = (document.getElementById("hours").innerHTML =
+          hours + " godzin");
+        if (hours < 5) {
+          document.getElementById("hours").innerHTML = hours + " godziny";
+        }
+        if (hours == 1) {
+          document.getElementById("hours").innerHTML = hours + " godzina";
+        }
+        if (hours == 0) {
+          document.getElementById("hours").innerHTML = hours + " godzin";
+        }
+        const spanMins = (document.getElementById("mins").innerHTML =
+          mins + " minut");
+        if (mins < 5) {
+          document.getElementById("mins").innerHTML = mins + " minuty";
+        }
+        if (mins == 1) {
+          document.getElementById("mins").innerHTML = mins + " minuta";
+        }
+        if (mins == 0) {
+          document.getElementById("mins").innerHTML = mins + " minut";
+        }
+        const spanSec = (document.getElementById("seconds").innerHTML =
+          sec + " sekund");
+        if (sec < 5) {
+          document.getElementById("seconds").innerHTML = sec + " sekundy";
+        }
+        if (sec == 1) {
+          document.getElementById("seconds").innerHTML = sec + " sekunda";
+        }
+        if (sec == 0) {
+          document.getElementById("seconds").innerHTML = sec + " sekund";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
